@@ -16,14 +16,12 @@ const password = {
 
 // Write password to the #password input
 function writePassword() {
-  generatePassword();
   const passwordText = document.querySelector("#password");
-
+  generatePassword();
   passwordText.value = password.stringContent;
-
 }
 
-//Generate a password with a series of criteria
+//Start to generate a password
 function generatePassword() {
   setPasswordLen ();
   //Reset charPool;
@@ -64,9 +62,10 @@ function setCharType () {
   
   if (password.inclSpecialChar = confirm("Please confirm whether or not to include special characters.")) {
     charPool[i] = specialChar;
+    i++;
   }
 
-  if(password.inclLowercase || password.inclUppercase || password.inclNumeric || password.inclSpecialChar) {
+  if(i) {
     generateString ();
   } else {
     alert("Sorry, please select at least one character type.");
@@ -81,7 +80,7 @@ function generateString() {
   let a = 0;
   let b = 0;
   let charTypes = []; 
-  for (let i = 0; i < password.stringLength ; i++) {
+  for (let i = 0; i < password.stringLength; i++) {
     a = Math.floor(Math.random()*charPool.length); 
     if (!charTypes.includes(a)) {
       charTypes = charTypes.concat(a);
@@ -90,6 +89,7 @@ function generateString() {
     password.stringContent = password.stringContent.concat(charPool[a][b]);
   }
 
+  //Re-generate if the generated password isn't containing every selected character type
   if (charTypes.length < charPool.length) {
     generateString();
   }
