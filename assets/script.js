@@ -1,5 +1,10 @@
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
+let charPool = [];
+const lowercaseLetters = 'abcdefghijkmnopqrstuvwxyz'.split('');
+const uppercaseLetters = 'ABCDEFGHJKLMNOPQRSTUVWXYZ'.split('');
+const numbers = '0123456789'.split('');
+const specialChar = '~!@#$%^&+-<>?_'.split('');
 const password = {
   stringLength: 0,
   inclLowercase: false,
@@ -11,7 +16,7 @@ const password = {
 
 // Write password to the #password input
 function writePassword() {
-  password.stringContent = generatePassword();
+  generatePassword();
   const passwordText = document.querySelector("#password");
 
   passwordText.value = password.stringContent;
@@ -40,16 +45,48 @@ function setPasswordLen() {
 
 //Set password character types
 function setCharType () {
-  password.inclLowercase = confirm("Please confirm whether or not to include lowercase letters.");
-  password.inclUppercase = confirm("Please confirm whether or not to include uppercase letters.");
-  password.inclNumeric = confirm("Please confirm whether or not to include numbers.");
-  password.inclSpecialChar = confirm("Please confirm whether or not to include special characters.");
+  let i = 0;
+  if (password.inclLowercase = confirm("Please confirm whether or not to include lowercase letters.")) {
+    charPool[i] = lowercaseLetters;
+    i++;
+  } else {
+  }
+
+  if (password.inclUppercase = confirm("Please confirm whether or not to include uppercase letters.")) {
+    charPool[i] = uppercaseLetters;
+    i++;
+  } else {
+  }
+
+  if (password.inclNumeric = confirm("Please confirm whether or not to include numbers.")) {
+    charPool[i] = numbers;
+    i++;
+  } else {
+  }
+  
+  if (password.inclSpecialChar = confirm("Please confirm whether or not to include special characters.")) {
+    charPool[i] = specialChar;
+  } else {
+  }
+
   if(password.inclLowercase || password.inclUppercase || password.inclNumeric || password.inclSpecialChar) {
-    // setPasswordContent ();
+    generateString ();
   } else {
     alert("Sorry, please select at least one character type.");
     setCharType();
   }
+}
+
+//Generate password string
+function generateString() {
+  for (let i = 0; i < password.stringLength ; i++) {
+    let a = Math.floor(Math.random()*charPool.length); 
+    let b = Math.floor(Math.random()*(charPool[a].length));
+    // console.log(charPool[a][b]);
+    password.stringContent = password.stringContent.concat(charPool[a][b]);
+    // console.log(password.stringContent);
+  }
+
 }
 
 //End the process
@@ -71,8 +108,8 @@ generateBtn.addEventListener("click", writePassword);
     // !WHEN asked for character types to include in the password
     // !THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
     // !WHEN I answer each prompt
-    // THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
+    // !THEN my input should be validated and at least one character type should be selected
+    // !WHEN all prompts are answered
 // THEN a password is generated that matches the selected criteria
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
