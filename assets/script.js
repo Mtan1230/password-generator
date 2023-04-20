@@ -13,17 +13,25 @@ function writePassword() {
 //Generate a password with a series of criteria
 function generatePassword() {
   var passwordLen = setPasswordLen ();
+  // var 
 }
 
 //Set the length of the password
 function setPasswordLen() {
   var setLen = prompt("Please choose the length of your password (at least 8 characters, and no more than 128 characters", "Enter 8-128");
-  if(setLen >= 8 && setLen <= 128) {
+  if (setLen >= 8 && setLen <= 128) {
     return setLen;
+  } else if (!setLen) {
+    endGenerator();
   } else {
     alert("Sorry, it's not a valid number.");
     setPasswordLen();
   }
+}
+
+//End the process
+function endGenerator() {
+  alert("Thanks for using!")
 }
 
 // Add event listener to generate button
