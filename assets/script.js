@@ -1,24 +1,31 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+const generateBtn = document.querySelector("#generate");
+const password = {
+  stringLength: 0,
+  inclLowercase: false,
+  inclUppercase: false,
+  inclNumeric: false,
+  inclSpecialChar: false,
+  stringContent: "",
+}
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  password.stringContent = generatePassword();
+  const passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = password.stringContent;
 
 }
 
 //Generate a password with a series of criteria
 function generatePassword() {
-  var passwordLen = setPasswordLen ();
-  // var 
+  password.stringLength = setPasswordLen ();
 }
 
 //Set the length of the password
 function setPasswordLen() {
-  var setLen = prompt("Please choose the length of your password (at least 8 characters, and no more than 128 characters", "Enter 8-128");
+  const setLen = prompt("Please choose the length of your password (at least 8 characters, and no more than 128 characters", "Enter 8-128");
   if (setLen >= 8 && setLen <= 128) {
     return setLen;
   } else if (!setLen) {
