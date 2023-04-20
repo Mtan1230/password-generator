@@ -21,12 +21,15 @@ function writePassword() {
 
   passwordText.value = password.stringContent;
 
+  //Reset password.stringContent to empty
+  password.stringContent = "";
 }
 
 //Generate a password with a series of criteria
 function generatePassword() {
   setPasswordLen ();
-
+  //Reset charPool;
+  charPool = [];
 }
 
 //Set the length of the password
